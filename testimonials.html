@@ -209,7 +209,38 @@
     <div class="share-section fade-up">
       <h2 data-en="Share Your Experience" data-es="Comparte tu Experiencia">Comparte tu Experiencia</h2>
       <p data-en="Got tattooed by Coup Tattoo? We'd love to hear your story." data-es="&#xbf;Te tatu&#xf3; Coup Tattoo? Nos encantar&#xed;a escuchar tu historia.">&#xbf;Te tatu&#xf3; Coup Tattoo? Nos encantar&#xed;a escuchar tu historia.</p>
-      <p style="color:var(--dim);margin-top:24px;"><a href="https://www.instagram.com/coupstattoo" target="_blank" rel="noopener" style="color:var(--gold);">@coupstattoo</a> en Instagram</p>
+      <form onsubmit="submitTestimonial(event)">
+        <div class="form-group">
+          <label data-en="Your Name" data-es="Tu Nombre">Tu Nombre</label>
+          <input type="text" id="t-name" required placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label data-en="Your Experience" data-es="Tu Experiencia">Tu Experiencia</label>
+          <textarea id="t-body" rows="5" required placeholder="Cu&#xe9;ntanos sobre tu experiencia..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Instagram (opcional)</label>
+          <input type="text" id="t-ig" placeholder="@handle">
+        </div>
+        <button type="submit" class="btn-submit" data-en="Submit" data-es="Enviar">Enviar</button>
+        <p id="t-success" style="display:none;color:var(--gold);margin-top:16px;" data-en="Thank you! Your testimonial has been sent." data-es="&#xa1;Gracias! Tu testimonio ha sido enviado.">&#xa1;Gracias! Tu testimonio ha sido enviado.</p>
+      </form>
+      <script>
+      function submitTestimonial(e) {
+        e.preventDefault();
+        const name = document.getElementById('t-name').value;
+        const body = document.getElementById('t-body').value;
+        const ig = document.getElementById('t-ig').value;
+        const to = "hello@coupstattoo.com";
+        const sub = encodeURIComponent("Nuevo testimonio - " + name);
+        const msg = encodeURIComponent("Name: " + name + "
+Instagram: " + ig + "
+
+" + body);
+        window.location.href = "mailto:" + to + "?subject=" + sub + "&body=" + msg;
+        document.getElementById('t-success').style.display = 'block';
+      }
+      </script>
     </div>
   </div>
 
